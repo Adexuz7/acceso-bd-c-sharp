@@ -11,16 +11,13 @@ namespace Controllers
 {
     public class MainController
     {
-        private string connectionString =
-            "Data Source=DESKTOP-3RR2FK1\\SQLEXPRESS;" +
-            "Initial Catalog=bdFutbol;" +
-            "User id=sa;" +
-            "Password=sa;";
 
+        private string connectionString;
         private DataSet dataSet;
 
-        public MainController()
+        public MainController(string connectionString)
         {
+            this.connectionString = connectionString;
             ConnectToData(this.connectionString);
         }
 
@@ -51,7 +48,27 @@ namespace Controllers
 
                 adapter.Fill(dataSet);
 
+                // Relación Ligas y Equipos
+                createRelation("Ligas", "codLiga", "Equipos", "codLiga", "LigasEquipos");
+                // Relación Equipos y Contratos
+                createRelation("Equipos", "codEquipo", "Contratos", "codEquipo", "EquiposContratos");
+                // Relación Futbolistas y Contratos
+                createRelation("Futbolistas", "codDNIoNIE", "Contratos", "codDNIoNIE", "FutbolistasContratos");
+
             }
+        }
+
+        // Función para crear las relaciones de las tablas
+        private void createRelation(string parentTableName, string parentColumnName, string childTableName, string childColumnName, string relationName) 
+        {
+            DataColumn parentColumn =
+                    dataSet.Tables[parentTableName].Columns[parentColumnName];
+            DataColumn childColumn =
+                dataSet.Tables[childTableName].Columns[childColumnName];
+            DataRelation relation =
+                new System.Data.DataRelation(relationName,
+                parentColumn, childColumn);
+            dataSet.Relations.Add(relation);
         }
 
         public List<Futbolista> GetFutbolistas() 
@@ -63,6 +80,11 @@ namespace Controllers
                     Nombre = futbolista.Field<string>("nombre"),
                     Nacionalidad = futbolista.Field<string>("nacionalidad")
                 }).ToList();
+        }
+
+        public DataTableCollection getTables()
+        {
+            return this.dataSet.Tables;
         }
     }
 }
