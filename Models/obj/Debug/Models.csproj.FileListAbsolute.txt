@@ -1,0 +1,6 @@
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Models\bin\Debug\Models.dll
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Models\bin\Debug\Models.pdb
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Models\obj\Debug\Models.csprojAssemblyReference.cache
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Models\obj\Debug\Models.dll
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Models\obj\Debug\Models.pdb

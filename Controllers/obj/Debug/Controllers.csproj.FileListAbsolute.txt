@@ -1,0 +1,9 @@
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\bin\Debug\Controllers.dll
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\bin\Debug\Controllers.pdb
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\obj\Debug\Controllers.csprojAssemblyReference.cache
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\obj\Debug\Controllers.csproj.CoreCompileInputs.cache
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\obj\Debug\Controllers.dll
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\obj\Debug\Controllers.pdb
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\bin\Debug\Models.dll
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\bin\Debug\Models.pdb
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\obj\Debug\Controllers.csproj.CopyComplete
