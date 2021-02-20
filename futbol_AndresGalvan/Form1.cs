@@ -205,5 +205,19 @@ namespace futbol_AndresGalvan
 
             
         }
+
+        private void executeButton_Click(object sender, EventArgs e)
+        {
+            string codDNIoNIE = codDNIoNIETextBox.Text;
+
+            if (string.IsNullOrEmpty(codDNIoNIE)) 
+            {
+                return;
+            }
+
+            DataTable result = this.mainController.ExecProcedureObtenerContratoFutbolista(codDNIoNIE);
+
+            sPdataGridView.DataSource = result;
+        }
     }
 }

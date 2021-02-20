@@ -288,5 +288,10 @@ namespace Controllers
                 throw;
             }
         }
+
+        public DataTable ExecProcedureObtenerContratoFutbolista(string codDNIoNIE)
+        {
+            return SQLRepository.ObtenerContratoFutbolista(this.connectionString, codDNIoNIE);
+        }
     }
 }
