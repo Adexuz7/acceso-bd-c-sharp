@@ -38,7 +38,7 @@ namespace futbol_AndresGalvan
             populateTableComboBox();
 
             // Actualizar la interfaz cuando se selecciona una tabla
-            this.selectTableComboBox.SelectedIndexChanged += new System.EventHandler(updateUI);
+            this.selectTableComboBox.SelectedIndexChanged += new System.EventHandler(RefreshDataGridView);
 
             
 
@@ -46,47 +46,71 @@ namespace futbol_AndresGalvan
 
         private void populateTableComboBox()
         {
-            // Hacer lista de las tablas
-            List<DataTable> tables = new List<DataTable>(mainController.getTables().Cast<DataTable>());
-
             // Rellenar comboBox con los nombres de las tablas
-            this.selectTableComboBox.DataSource = tables;
-            this.selectTableComboBox.DisplayMember = "TableName";
+            this.selectTableComboBox.DataSource = this.mainController.getTableNames();
 
             // Hacer que sea de solo lectura
             this.selectTableComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
-        private void updateUI(object sender, System.EventArgs e)
+        private string GetSelectedTableName()
+        {
+            return (string)this.selectTableComboBox.SelectedItem;
+        }
+
+        private void RefreshDataGridView(object sender, System.EventArgs e)
         {
             // Recoger el comboBox
-            ComboBox comboBox = (ComboBox) sender;
+            //ComboBox comboBox = (ComboBox) sender;
 
             // Recoger la opcion seleccionada del comboBox
-            DataTable selectedTable = (DataTable) comboBox.SelectedItem;
+            //DataTable selectedTable = (DataTable) comboBox.SelectedItem;
+
+            string selectedTable = this.GetSelectedTableName();
 
             // Actualizar dataGridView
-            dataGridView1.DataSource = selectedTable;
+
+            this.dataGridView1.DataSource = null;
+
+            switch (selectedTable)
+            {
+                case "Futbolistas":
+                    dataGridView1.DataSource = this.mainController.GetFutbolistas();
+                    break;
+                case "Equipos":
+
+                    break;
+                case "Contratos":
+
+                    break;
+                case "Ligas":
+                    dataGridView1.DataSource = this.mainController.GetLigas();
+                    break;
+            }
+
+            //dataGridView1.DataSource = selectedTable;
+
+            // Actualizar label
             RowCountLabel.Text = "Nº de registros: " + dataGridView1.RowCount;
-
-
-
-
-
 
 
             // SHIT
 
-            DataGridViewComboBoxColumn cmb = new DataGridViewComboBoxColumn();
-            cmb.DisplayMember = "Nombre"; 
+            //DataGridViewComboBoxColumn cmb = new DataGridViewComboBoxColumn();
+            //cmb.DisplayMember = "Nombre"; 
 
-            cmb.DataPropertyName = "Nombre"; // Aqui se ponen los datos (hace que el programa explote)
-            cmb.DataSource = mainController.getTables()["futbolistas"]; 
-            dataGridView1.Columns.Add(cmb);
-
-
+            //cmb.DataPropertyName = "Nombre"; // Aqui se ponen los datos (hace que el programa explote)
+            //cmb.DataSource = mainController.getTables()["futbolistas"]; 
+            //dataGridView1.Columns.Add(cmb);
 
 
+
+
+        }
+
+        private void RefreshDataGridView()
+        {
+            RefreshDataGridView(null, null);
         }
 
         private string readConnectionString()
@@ -106,10 +130,80 @@ namespace futbol_AndresGalvan
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            //foreach (DataGridViewRow row in dataGridView1.SelectedRows)
-            //{
-            //    dataGridView1.Rows.Remove(row);
-            //}
+            Object objectToDelete = dataGridView1.CurrentRow.DataBoundItem;
+
+            try
+            {
+                switch (this.GetSelectedTableName())
+                {
+                    case "Futbolistas":
+                        this.mainController.DeleteFutbolista((Futbolista) objectToDelete);
+                        break;
+                    case "Equipos":
+
+                        break;
+                    case "Contratos":
+
+                        break;
+                    case "Ligas":
+                        this.mainController.DeleteLiga((Liga)objectToDelete);
+                        break;
+                }
+
+                RefreshDataGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void insertButton_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+                switch (this.GetSelectedTableName())
+                {
+                    case "Futbolistas":
+
+                        Futbolista newFutbolista = new Futbolista()
+                        {
+                            CodDNIoNIE = "12345678A",
+                            Nombre = "Futbolista de ejemplo",
+                            Nacionalidad = "Alienígena"
+                        };
+
+                        this.mainController.UpsertFutbolista(newFutbolista);
+                        break;
+                    case "Equipos":
+
+                        break;
+                    case "Contratos":
+
+                        break;
+                    case "Ligas":
+
+                        Liga newLiga = new Liga()
+                        {
+                            CodLiga = "LFP07",
+                            NomLiga = "Liga Intergaláctica"
+                        };
+
+                        this.mainController.UpsertLiga(newLiga);
+                        break;
+                }
+
+                RefreshDataGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            
         }
     }
 }

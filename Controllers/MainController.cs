@@ -82,9 +82,211 @@ namespace Controllers
                 }).ToList();
         }
 
+        public List<Liga> GetLigas()
+        {
+            return this.dataSet.Tables["Ligas"].AsEnumerable().Select(liga =>
+                new Liga
+                {
+                    CodLiga = liga.Field<string>("codLiga"),
+                    NomLiga = liga.Field<string>("nomLiga")
+                }).ToList();
+        }
+
         public DataTableCollection getTables()
         {
             return this.dataSet.Tables;
+        }
+
+        public List<string> getTableNames()
+        {
+            List<string> tableNames = new List<string>();
+
+            foreach (DataTable dt in this.dataSet.Tables) 
+            {
+                tableNames.Add(dt.TableName);
+            }
+
+            return tableNames;
+        }
+
+        private void PersistChangesOnDatabaseTable(string tableName)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM " + tableName;
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, this.connectionString);
+
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
+
+                DataTable tableToUpdate = this.dataSet.Tables[tableName];
+
+                adapter.Update(tableToUpdate);
+            }
+        }
+
+        // Funciones para insertar o actualizar
+        public void UpsertFutbolista(Futbolista futbolista)
+        {
+            string DNIoNIE = futbolista.CodDNIoNIE;
+
+            if (string.IsNullOrEmpty(DNIoNIE))
+            {
+                return;
+            }
+
+            DataRow futbolistaToUpsert = null;
+
+            try
+            {
+                // SingleOrDefault devuelve el registro o nada si no existe
+                futbolistaToUpsert = this.dataSet.Tables["Futbolistas"]
+                                        .AsEnumerable()
+                                        .SingleOrDefault(row => row.Field<string>("codDNIoNIE") == DNIoNIE);
+
+                // Crear una nueva fila para insertar y Si no existe lo inserta
+                if (futbolistaToUpsert == null)
+                {
+                    futbolistaToUpsert = this.dataSet.Tables["Futbolistas"].NewRow();
+                    futbolistaToUpsert["codDNIoNIE"] = futbolista.CodDNIoNIE;
+                    this.dataSet.Tables["Futbolistas"].Rows.Add(futbolistaToUpsert);
+                }
+
+                // Actualizar campos restantes
+                futbolistaToUpsert["Nombre"] = futbolista.Nombre;
+                futbolistaToUpsert["Nacionalidad"] = futbolista.Nacionalidad;
+
+                // Persistir cambios en la base de datos
+                PersistChangesOnDatabaseTable("Futbolistas");
+                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void UpsertLiga(Liga liga)
+        {
+            string codLiga = liga.CodLiga;
+
+            if (string.IsNullOrEmpty(codLiga))
+            {
+                return;
+            }
+
+            DataRow ligaToUpsert = null;
+
+            try
+            {
+                // SingleOrDefault devuelve el registro o nada si no existe
+                ligaToUpsert = this.dataSet.Tables["Ligas"]
+                                        .AsEnumerable()
+                                        .SingleOrDefault(row => row.Field<string>("codLiga") == codLiga);
+
+                // Crear una nueva fila para insertar y Si no existe lo inserta
+                if (ligaToUpsert == null)
+                {
+                    ligaToUpsert = this.dataSet.Tables["Ligas"].NewRow();
+                    ligaToUpsert["codLiga"] = liga.CodLiga;
+                    this.dataSet.Tables["Ligas"].Rows.Add(ligaToUpsert);
+                }
+
+                // Actualizar campos restantes
+                ligaToUpsert["nomLiga"] = liga.NomLiga;
+
+                // Persistir cambios en la base de datos
+                PersistChangesOnDatabaseTable("Ligas");
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void DeleteFutbolista(Futbolista futbolista)
+        {
+            string DNIoNIE = futbolista.CodDNIoNIE;
+
+            if (string.IsNullOrEmpty(DNIoNIE))
+            {
+                return;
+            }
+
+            DataRow futbolistaToDelete = null;
+
+            try
+            {
+                // SingleOrDefault devuelve el registro o nada si no existe
+                futbolistaToDelete = this.dataSet.Tables["Futbolistas"]
+                                        .AsEnumerable()
+                                        .SingleOrDefault(row => row.Field<string>("codDNIoNIE") == DNIoNIE);
+
+                
+                if (futbolistaToDelete == null)
+                {
+                    return;
+                }
+
+                // Marcar fila para eliminar
+                futbolistaToDelete.Delete();
+
+                // Persistir cambios en la base de datos
+                PersistChangesOnDatabaseTable("Futbolistas");
+
+            }
+            catch (Exception)
+            {
+                if (futbolistaToDelete != null)
+                {
+                    futbolistaToDelete.RejectChanges();
+                }
+
+                throw;
+            }
+        }
+
+        public void DeleteLiga(Liga liga)
+        {
+            string codLiga = liga.CodLiga;
+
+            if (string.IsNullOrEmpty(codLiga))
+            {
+                return;
+            }
+
+            DataRow ligaToDelete = null;
+
+            try
+            {
+                // SingleOrDefault devuelve el registro o nada si no existe
+                ligaToDelete = this.dataSet.Tables["Ligas"]
+                                        .AsEnumerable()
+                                        .SingleOrDefault(row => row.Field<string>("codLiga") == codLiga);
+
+
+                if (ligaToDelete == null)
+                {
+                    return;
+                }
+
+                // Marcar fila para eliminar
+                ligaToDelete.Delete();
+
+                // Persistir cambios en la base de datos
+                PersistChangesOnDatabaseTable("Ligas");
+
+            }
+            catch (Exception)
+            {
+                if (ligaToDelete != null)
+                {
+                    ligaToDelete.RejectChanges();
+                }
+
+                throw;
+            }
         }
     }
 }

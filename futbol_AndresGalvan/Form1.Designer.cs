@@ -105,6 +105,7 @@ namespace futbol_AndresGalvan
             this.insertButton.TabIndex = 6;
             this.insertButton.Text = "Insertar";
             this.insertButton.UseVisualStyleBackColor = true;
+            this.insertButton.Click += new System.EventHandler(this.insertButton_Click);
             // 
             // label1
             // 
