@@ -7,3 +7,12 @@ C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\obj\Debug\Controlle
 C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\bin\Debug\Models.dll
 C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\bin\Debug\Models.pdb
 C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Controllers\obj\Debug\Controllers.csproj.CopyComplete
+D:\_dev\AccesoSQL.NET\Controllers\bin\Debug\Controllers.dll
+D:\_dev\AccesoSQL.NET\Controllers\bin\Debug\Controllers.pdb
+D:\_dev\AccesoSQL.NET\Controllers\bin\Debug\Models.dll
+D:\_dev\AccesoSQL.NET\Controllers\bin\Debug\Models.pdb
+D:\_dev\AccesoSQL.NET\Controllers\obj\Debug\Controllers.csprojAssemblyReference.cache
+D:\_dev\AccesoSQL.NET\Controllers\obj\Debug\Controllers.csproj.CoreCompileInputs.cache
+D:\_dev\AccesoSQL.NET\Controllers\obj\Debug\Controllers.csproj.CopyComplete
+D:\_dev\AccesoSQL.NET\Controllers\obj\Debug\Controllers.dll
+D:\_dev\AccesoSQL.NET\Controllers\obj\Debug\Controllers.pdb

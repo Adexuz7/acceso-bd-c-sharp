@@ -4,3 +4,9 @@ C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Models\obj\Debug\Models.csprojA
 C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Models\obj\Debug\Models.dll
 C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\Models\obj\Debug\Models.pdb
+D:\_dev\AccesoSQL.NET\Models\bin\Debug\Models.dll
+D:\_dev\AccesoSQL.NET\Models\bin\Debug\Models.pdb
+D:\_dev\AccesoSQL.NET\Models\obj\Debug\Models.csprojAssemblyReference.cache
+D:\_dev\AccesoSQL.NET\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+D:\_dev\AccesoSQL.NET\Models\obj\Debug\Models.dll
+D:\_dev\AccesoSQL.NET\Models\obj\Debug\Models.pdb

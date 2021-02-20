@@ -49,17 +49,16 @@ namespace Controllers
                 adapter.Fill(dataSet);
 
                 // Relación Ligas y Equipos
-                createRelation("Ligas", "codLiga", "Equipos", "codLiga", "LigasEquipos");
+                CreateRelation("Ligas", "codLiga", "Equipos", "codLiga", "LigasEquipos");
                 // Relación Equipos y Contratos
-                createRelation("Equipos", "codEquipo", "Contratos", "codEquipo", "EquiposContratos");
+                CreateRelation("Equipos", "codEquipo", "Contratos", "codEquipo", "EquiposContratos");
                 // Relación Futbolistas y Contratos
-                createRelation("Futbolistas", "codDNIoNIE", "Contratos", "codDNIoNIE", "FutbolistasContratos");
-
+                CreateRelation("Futbolistas", "codDNIoNIE", "Contratos", "codDNIoNIE", "FutbolistasContratos");
             }
         }
 
         // Función para crear las relaciones de las tablas
-        private void createRelation(string parentTableName, string parentColumnName, string childTableName, string childColumnName, string relationName) 
+        private void CreateRelation(string parentTableName, string parentColumnName, string childTableName, string childColumnName, string relationName) 
         {
             DataColumn parentColumn =
                     dataSet.Tables[parentTableName].Columns[parentColumnName];
@@ -82,9 +81,105 @@ namespace Controllers
                 }).ToList();
         }
 
-        public DataTableCollection getTables()
+        private void PersistChangesOnDatabaseTable(string tableName)
         {
-            return this.dataSet.Tables;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = string.Format("SELECT * FROM {0}", tableName);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, this.connectionString);
+
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
+
+                DataTable tableToUpdate = this.dataSet.Tables[tableName];
+
+                adapter.Update(tableToUpdate);
+            }
+        }
+
+        public bool UpsertFutbolista(Futbolista futbolista)
+        {
+            string dniToUpsert = futbolista.CodDNIoNIE;
+
+            if (string.IsNullOrEmpty(dniToUpsert))
+            {
+                return false;
+            }
+
+            DataRow futbolistaToUpsert = null;
+
+            try
+            {
+                futbolistaToUpsert = this.dataSet.Tables["Futbolistas"]
+                                            .AsEnumerable()
+                                            .SingleOrDefault(row => row.Field<string>("codDNIoNIE") == dniToUpsert);
+
+                // Create new row for insertion
+                if (futbolistaToUpsert == null)
+                {
+                    futbolistaToUpsert = this.dataSet.Tables["Futbolistas"].NewRow();
+                    futbolistaToUpsert["codDNIoNIE"] = futbolista.CodDNIoNIE;
+                    this.dataSet.Tables["Futbolistas"].Rows.Add(futbolistaToUpsert);
+                }
+                else 
+                {
+                    // Football player already exists!!!
+                }
+
+                // Update remaning fields
+                futbolistaToUpsert["Nombre"] = futbolista.Nombre;
+                futbolistaToUpsert["Nacionalidad"] = futbolista.Nacionalidad;
+
+                // Persist change on database
+                PersistChangesOnDatabaseTable("Futbolistas");
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool RemoveFutbolista(Futbolista futbolista)
+        {
+            string dniToRemove = futbolista.CodDNIoNIE;
+
+            if (string.IsNullOrEmpty(dniToRemove))
+            {
+                return false;
+            }
+
+            DataRow futbolistaToRemove = null;
+
+            try
+            {
+                futbolistaToRemove = this.dataSet.Tables["Futbolistas"]
+                                            .AsEnumerable()
+                                            .SingleOrDefault(row => row.Field<string>("codDNIoNIE") == dniToRemove);
+
+                if (futbolistaToRemove == null)
+                {
+                    return false;
+                }
+
+                // Mark row to delete
+                futbolistaToRemove.Delete();
+                
+                // Persist removal (also deletes from dataset)
+                PersistChangesOnDatabaseTable("Futbolistas");
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                if (futbolistaToRemove != null)
+                {
+                    futbolistaToRemove.RejectChanges();
+                }
+
+                throw e;
+            }
         }
     }
 }
