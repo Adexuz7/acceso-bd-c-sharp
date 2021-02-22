@@ -82,6 +82,33 @@ namespace Controllers
                 }).ToList();
         }
 
+        public List<Equipo> GetEquipos()
+        {
+            return this.dataSet.Tables["Equipos"].AsEnumerable().Select(equipo =>
+                new Equipo
+                {
+                    CodEquipo = equipo.Field<int>("codEquipo"),
+                    NomEquipo = equipo.Field<string>("nomEquipo"),
+                    CodLiga = equipo.Field<string>("codLiga"),
+                    Localidad = equipo.Field<string>("localidad"),
+                    Internacional = equipo.Field<bool>("internacional")
+                }).ToList();
+        }
+
+        public List<Contrato> GetContratos()
+        {
+            return this.dataSet.Tables["Contratos"].AsEnumerable().Select(contrato =>
+                new Contrato
+                {
+                    CodContrato = contrato.Field<int>("codContrato"),
+                    CodDNIoNIE = contrato.Field<string>("codDNIoNIE"),
+                    CodEquipo = contrato.Field<int>("codEquipo"),
+                    FechaInicio = contrato.Field<DateTime>("fechaInicio"),
+                    FechaFin = contrato.Field<DateTime>("fechaFin"),
+                    PrecioRecision = contrato.Field<int>("precioRecision")
+                }).ToList();
+        }
+
         public List<Liga> GetLigas()
         {
             return this.dataSet.Tables["Ligas"].AsEnumerable().Select(liga =>

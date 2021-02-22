@@ -40,10 +40,10 @@ namespace futbol_AndresGalvan
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.SP_ObtenerContratoFutbolista = new System.Windows.Forms.TabPage();
-            this.codDNIoNIELabel = new System.Windows.Forms.Label();
-            this.codDNIoNIETextBox = new System.Windows.Forms.TextBox();
-            this.sPdataGridView = new System.Windows.Forms.DataGridView();
             this.executeButton = new System.Windows.Forms.Button();
+            this.sPdataGridView = new System.Windows.Forms.DataGridView();
+            this.codDNIoNIETextBox = new System.Windows.Forms.TextBox();
+            this.codDNIoNIELabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -54,16 +54,16 @@ namespace futbol_AndresGalvan
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 39);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 33);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(710, 312);
+            this.dataGridView1.Size = new System.Drawing.Size(753, 332);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // RowCountLabel
             // 
             this.RowCountLabel.AutoSize = true;
-            this.RowCountLabel.Location = new System.Drawing.Point(13, 354);
+            this.RowCountLabel.Location = new System.Drawing.Point(6, 376);
             this.RowCountLabel.Name = "RowCountLabel";
             this.RowCountLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.RowCountLabel.Size = new System.Drawing.Size(76, 13);
@@ -75,7 +75,7 @@ namespace futbol_AndresGalvan
             // SelectTableLabel
             // 
             this.SelectTableLabel.AutoSize = true;
-            this.SelectTableLabel.Location = new System.Drawing.Point(13, 15);
+            this.SelectTableLabel.Location = new System.Drawing.Point(6, 9);
             this.SelectTableLabel.Name = "SelectTableLabel";
             this.SelectTableLabel.Size = new System.Drawing.Size(37, 13);
             this.SelectTableLabel.TabIndex = 2;
@@ -84,14 +84,14 @@ namespace futbol_AndresGalvan
             // selectTableComboBox
             // 
             this.selectTableComboBox.FormattingEnabled = true;
-            this.selectTableComboBox.Location = new System.Drawing.Point(56, 12);
+            this.selectTableComboBox.Location = new System.Drawing.Point(49, 6);
             this.selectTableComboBox.Name = "selectTableComboBox";
             this.selectTableComboBox.Size = new System.Drawing.Size(121, 21);
             this.selectTableComboBox.TabIndex = 3;
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(460, 10);
+            this.deleteButton.Location = new System.Drawing.Point(687, 371);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(75, 23);
             this.deleteButton.TabIndex = 4;
@@ -101,7 +101,7 @@ namespace futbol_AndresGalvan
             // 
             // modifyButton
             // 
-            this.modifyButton.Location = new System.Drawing.Point(379, 10);
+            this.modifyButton.Location = new System.Drawing.Point(606, 371);
             this.modifyButton.Name = "modifyButton";
             this.modifyButton.Size = new System.Drawing.Size(75, 23);
             this.modifyButton.TabIndex = 5;
@@ -110,7 +110,7 @@ namespace futbol_AndresGalvan
             // 
             // insertButton
             // 
-            this.insertButton.Location = new System.Drawing.Point(298, 10);
+            this.insertButton.Location = new System.Drawing.Point(525, 371);
             this.insertButton.Name = "insertButton";
             this.insertButton.Size = new System.Drawing.Size(75, 23);
             this.insertButton.TabIndex = 6;
@@ -121,7 +121,7 @@ namespace futbol_AndresGalvan
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(679, 15);
+            this.label1.Location = new System.Drawing.Point(649, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 13);
             this.label1.TabIndex = 7;
@@ -140,9 +140,9 @@ namespace futbol_AndresGalvan
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.insertButton);
             this.tabPage1.Controls.Add(this.modifyButton);
-            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.deleteButton);
             this.tabPage1.Controls.Add(this.RowCountLabel);
             this.tabPage1.Controls.Add(this.SelectTableLabel);
@@ -152,7 +152,7 @@ namespace futbol_AndresGalvan
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(768, 400);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "bdFutbol";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // SP_ObtenerContratoFutbolista
@@ -169,30 +169,6 @@ namespace futbol_AndresGalvan
             this.SP_ObtenerContratoFutbolista.Text = "SP_ObtenerContratoFutbolista";
             this.SP_ObtenerContratoFutbolista.UseVisualStyleBackColor = true;
             // 
-            // codDNIoNIELabel
-            // 
-            this.codDNIoNIELabel.AutoSize = true;
-            this.codDNIoNIELabel.Location = new System.Drawing.Point(6, 11);
-            this.codDNIoNIELabel.Name = "codDNIoNIELabel";
-            this.codDNIoNIELabel.Size = new System.Drawing.Size(59, 13);
-            this.codDNIoNIELabel.TabIndex = 0;
-            this.codDNIoNIELabel.Text = "DNI o NIE:";
-            // 
-            // codDNIoNIETextBox
-            // 
-            this.codDNIoNIETextBox.Location = new System.Drawing.Point(71, 8);
-            this.codDNIoNIETextBox.Name = "codDNIoNIETextBox";
-            this.codDNIoNIETextBox.Size = new System.Drawing.Size(100, 20);
-            this.codDNIoNIETextBox.TabIndex = 1;
-            // 
-            // sPdataGridView
-            // 
-            this.sPdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sPdataGridView.Location = new System.Drawing.Point(6, 35);
-            this.sPdataGridView.Name = "sPdataGridView";
-            this.sPdataGridView.Size = new System.Drawing.Size(756, 332);
-            this.sPdataGridView.TabIndex = 2;
-            // 
             // executeButton
             // 
             this.executeButton.Location = new System.Drawing.Point(177, 6);
@@ -203,6 +179,30 @@ namespace futbol_AndresGalvan
             this.executeButton.UseVisualStyleBackColor = true;
             this.executeButton.Click += new System.EventHandler(this.executeButton_Click);
             // 
+            // sPdataGridView
+            // 
+            this.sPdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sPdataGridView.Location = new System.Drawing.Point(6, 34);
+            this.sPdataGridView.Name = "sPdataGridView";
+            this.sPdataGridView.Size = new System.Drawing.Size(756, 360);
+            this.sPdataGridView.TabIndex = 2;
+            // 
+            // codDNIoNIETextBox
+            // 
+            this.codDNIoNIETextBox.Location = new System.Drawing.Point(71, 8);
+            this.codDNIoNIETextBox.Name = "codDNIoNIETextBox";
+            this.codDNIoNIETextBox.Size = new System.Drawing.Size(100, 20);
+            this.codDNIoNIETextBox.TabIndex = 1;
+            // 
+            // codDNIoNIELabel
+            // 
+            this.codDNIoNIELabel.AutoSize = true;
+            this.codDNIoNIELabel.Location = new System.Drawing.Point(6, 11);
+            this.codDNIoNIELabel.Name = "codDNIoNIELabel";
+            this.codDNIoNIELabel.Size = new System.Drawing.Size(59, 13);
+            this.codDNIoNIELabel.TabIndex = 0;
+            this.codDNIoNIELabel.Text = "DNI o NIE:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -210,7 +210,7 @@ namespace futbol_AndresGalvan
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Acceso a SQL";
+            this.Text = "Acceso a SQL (Andrés Galván García)";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

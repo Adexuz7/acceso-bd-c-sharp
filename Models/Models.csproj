@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato.cs" />
+    <Compile Include="Equipo.cs" />
     <Compile Include="Futbolista.cs" />
     <Compile Include="Liga.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

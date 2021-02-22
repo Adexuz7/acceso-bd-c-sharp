@@ -78,10 +78,10 @@ namespace futbol_AndresGalvan
                     dataGridView1.DataSource = this.mainController.GetFutbolistas();
                     break;
                 case "Equipos":
-
+                    dataGridView1.DataSource = this.mainController.GetEquipos();
                     break;
                 case "Contratos":
-
+                    dataGridView1.DataSource = this.mainController.GetContratos();
                     break;
                 case "Ligas":
                     dataGridView1.DataSource = this.mainController.GetLigas();
@@ -140,7 +140,7 @@ namespace futbol_AndresGalvan
                         this.mainController.DeleteFutbolista((Futbolista) objectToDelete);
                         break;
                     case "Equipos":
-
+                        
                         break;
                     case "Contratos":
 
