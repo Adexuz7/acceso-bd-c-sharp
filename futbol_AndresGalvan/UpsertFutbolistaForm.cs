@@ -64,7 +64,6 @@ namespace futbol_AndresGalvan
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
     }
 }

@@ -16,3 +16,4 @@ C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\futbol_AndresGalvan\obj\Debug\f
 C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\futbol_AndresGalvan\obj\Debug\futbol_AndresGalvan.UpsertLigaForm.resources
 C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\futbol_AndresGalvan\obj\Debug\futbol_AndresGalvan.UpsertEquipoForm.resources
 C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\futbol_AndresGalvan\obj\Debug\futbol_AndresGalvan.UpsertFutbolistaForm.resources
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\futbol_AndresGalvan\obj\Debug\futbol_AndresGalvan.UpsertContratoForm.resources

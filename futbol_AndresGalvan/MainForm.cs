@@ -150,18 +150,8 @@ namespace futbol_AndresGalvan
                         upsertEquipoForm.Show();
                         break;
                     case "Contratos":
-
-                        Contrato newContrato = new Contrato()
-                        {
-                            // CodContrato AUTONUMÉRICO
-                            CodDNIoNIE = "11111111M",
-                            CodEquipo = 5,
-                            FechaInicio = new DateTime(2008, 01, 01),
-                            FechaFin = new DateTime(2009, 06, 06),
-                            PrecioRecision = 999
-                        };
-
-                        this.mainController.UpsertContrato(newContrato);
+                        UpsertContratoForm upsertContratoForm = new UpsertContratoForm(mainController, this);
+                        upsertContratoForm.Show();
                         break;
                     case "Ligas":
                         UpsertLigaForm upsertLigaForm = new UpsertLigaForm(mainController, this);
@@ -208,18 +198,9 @@ namespace futbol_AndresGalvan
                         upsertEquipoForm.Show();
                         break;
                     case "Contratos":
-
-                        Contrato newContrato = new Contrato()
-                        {
-                            // CodContrato AUTONUMÉRICO
-                            CodDNIoNIE = "11111111M",
-                            CodEquipo = 5,
-                            FechaInicio = new DateTime(2008, 01, 01),
-                            FechaFin = new DateTime(2009, 06, 06),
-                            PrecioRecision = 999
-                        };
-
-                        this.mainController.UpsertContrato(newContrato);
+                        UpsertContratoForm upsertContratoForm = new UpsertContratoForm(mainController, this);
+                        upsertContratoForm.LoadData((Contrato)objectToModify);
+                        upsertContratoForm.Show();
                         break;
                     case "Ligas":
                         UpsertLigaForm upsertLigaForm = new UpsertLigaForm(mainController, this);
