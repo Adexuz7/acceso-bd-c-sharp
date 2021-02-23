@@ -55,6 +55,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpsertEquipoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpsertEquipoForm.Designer.cs">
+      <DependentUpon>UpsertEquipoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpsertLigaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UpsertEquipoForm.resx">
+      <DependentUpon>UpsertEquipoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpsertLigaForm.resx">
       <DependentUpon>UpsertLigaForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -153,17 +153,8 @@ namespace futbol_AndresGalvan
                         this.mainController.UpsertFutbolista(newFutbolista);
                         break;
                     case "Equipos":
-
-                        Equipo newEquipo = new Equipo()
-                        {
-                            // CodEquipo AUTONUMÉRICO
-                            NomEquipo = "Equipo Intergaláctico Alienígena",
-                            CodLiga = "LFP01",
-                            Localidad = "Una Galaxia Muy Lejana",
-                            Internacional = true
-                        };
-
-                        this.mainController.UpsertEquipo(newEquipo);
+                        UpsertEquipoForm upsertEquipoForm = new UpsertEquipoForm(mainController, this);
+                        upsertEquipoForm.Show();
                         break;
                     case "Contratos":
 
@@ -230,17 +221,9 @@ namespace futbol_AndresGalvan
                         this.mainController.UpsertFutbolista(newFutbolista);
                         break;
                     case "Equipos":
-
-                        Equipo newEquipo = new Equipo()
-                        {
-                            // CodEquipo AUTONUMÉRICO
-                            NomEquipo = "Equipo Intergaláctico Alienígena",
-                            CodLiga = "LFP01",
-                            Localidad = "Una Galaxia Muy Lejana",
-                            Internacional = true
-                        };
-
-                        this.mainController.UpsertEquipo(newEquipo);
+                        UpsertEquipoForm upsertEquipoForm = new UpsertEquipoForm(mainController, this);
+                        upsertEquipoForm.LoadData((Equipo)objectToModify);
+                        upsertEquipoForm.Show();
                         break;
                     case "Contratos":
 
