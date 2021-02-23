@@ -142,15 +142,8 @@ namespace futbol_AndresGalvan
                 switch (this.GetSelectedTableName())
                 {
                     case "Futbolistas":
-
-                        Futbolista newFutbolista = new Futbolista()
-                        {
-                            CodDNIoNIE = "12345678A",
-                            Nombre = "Futbolista de ejemplo",
-                            Nacionalidad = "Alienígena"
-                        };
-
-                        this.mainController.UpsertFutbolista(newFutbolista);
+                        UpsertFutbolistaForm upsertFutbolistaForm = new UpsertFutbolistaForm(mainController, this);
+                        upsertFutbolistaForm.Show();
                         break;
                     case "Equipos":
                         UpsertEquipoForm upsertEquipoForm = new UpsertEquipoForm(mainController, this);
@@ -175,15 +168,11 @@ namespace futbol_AndresGalvan
                         upsertLigaForm.Show();
                         break;
                 }
-
-                //RefreshDataGridView();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-
-            
+            }       
         }
 
         private void executeButton_Click(object sender, EventArgs e)
@@ -206,19 +195,12 @@ namespace futbol_AndresGalvan
 
             try
             {
-
                 switch (this.GetSelectedTableName())
                 {
                     case "Futbolistas":
-
-                        Futbolista newFutbolista = new Futbolista()
-                        {
-                            CodDNIoNIE = "12345678A",
-                            Nombre = "Futbolista de ejemplo",
-                            Nacionalidad = "Alienígena"
-                        };
-
-                        this.mainController.UpsertFutbolista(newFutbolista);
+                        UpsertFutbolistaForm upsertFutbolistaForm = new UpsertFutbolistaForm(mainController, this);
+                        upsertFutbolistaForm.LoadData((Futbolista)objectToModify);
+                        upsertFutbolistaForm.Show();
                         break;
                     case "Equipos":
                         UpsertEquipoForm upsertEquipoForm = new UpsertEquipoForm(mainController, this);
@@ -245,8 +227,6 @@ namespace futbol_AndresGalvan
                         upsertLigaForm.Show();
                         break;
                 }
-
-                //RefreshDataGridView();
             }
             catch (Exception ex)
             {

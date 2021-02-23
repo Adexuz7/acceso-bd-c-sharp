@@ -15,3 +15,4 @@ C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\futbol_AndresGalvan\bin\Debug\M
 C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\futbol_AndresGalvan\obj\Debug\futbol_AndresGalvan.MainForm.resources
 C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\futbol_AndresGalvan\obj\Debug\futbol_AndresGalvan.UpsertLigaForm.resources
 C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\futbol_AndresGalvan\obj\Debug\futbol_AndresGalvan.UpsertEquipoForm.resources
+C:\Users\Adexuz\Source\Repos\futbol_AndresGalvan\futbol_AndresGalvan\obj\Debug\futbol_AndresGalvan.UpsertFutbolistaForm.resources

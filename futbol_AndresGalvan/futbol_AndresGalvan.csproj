@@ -61,6 +61,12 @@
     <Compile Include="UpsertEquipoForm.Designer.cs">
       <DependentUpon>UpsertEquipoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpsertFutbolistaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpsertFutbolistaForm.Designer.cs">
+      <DependentUpon>UpsertFutbolistaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpsertLigaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     </Compile>
     <EmbeddedResource Include="UpsertEquipoForm.resx">
       <DependentUpon>UpsertEquipoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpsertFutbolistaForm.resx">
+      <DependentUpon>UpsertFutbolistaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpsertLigaForm.resx">
       <DependentUpon>UpsertLigaForm.cs</DependentUpon>
