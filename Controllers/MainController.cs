@@ -48,6 +48,8 @@ namespace Controllers
 
                 adapter.Fill(dataSet);
 
+                connection.Close();
+
                 // Relación Ligas y Equipos
                 createRelation("Ligas", "codLiga", "Equipos", "codLiga", "LigasEquipos");
                 // Relación Equipos y Contratos
@@ -140,6 +142,8 @@ namespace Controllers
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+                connection.Open();
+
                 string query = "SELECT * FROM " + tableName;
 
                 SqlDataAdapter adapter = new SqlDataAdapter(query, this.connectionString);
@@ -149,6 +153,10 @@ namespace Controllers
                 DataTable tableToUpdate = this.dataSet.Tables[tableName];
 
                 adapter.Update(tableToUpdate);
+
+                ConnectToData(connectionString);
+
+                connection.Close();
             }
         }
 
@@ -211,7 +219,7 @@ namespace Controllers
                 {
                     equipoToUpsert = this.dataSet.Tables["Equipos"].NewRow();
                     equipoToUpsert["codEquipo"] = equipo.CodEquipo;
-                    this.dataSet.Tables["Futbolistas"].Rows.Add(equipoToUpsert);
+                    this.dataSet.Tables["Equipos"].Rows.Add(equipoToUpsert);
                 }
 
                 // Actualizar campos restantes

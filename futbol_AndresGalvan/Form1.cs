@@ -240,5 +240,6 @@ namespace futbol_AndresGalvan
 
             sPdataGridView.DataSource = result;
         }
+
     }
 }

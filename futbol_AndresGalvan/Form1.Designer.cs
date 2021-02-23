@@ -36,7 +36,6 @@ namespace futbol_AndresGalvan
             this.deleteButton = new System.Windows.Forms.Button();
             this.modifyButton = new System.Windows.Forms.Button();
             this.insertButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.SP_ObtenerContratoFutbolista = new System.Windows.Forms.TabPage();
@@ -54,9 +53,9 @@ namespace futbol_AndresGalvan
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 33);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 35);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(753, 332);
+            this.dataGridView1.Size = new System.Drawing.Size(756, 330);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -75,7 +74,7 @@ namespace futbol_AndresGalvan
             // SelectTableLabel
             // 
             this.SelectTableLabel.AutoSize = true;
-            this.SelectTableLabel.Location = new System.Drawing.Point(6, 9);
+            this.SelectTableLabel.Location = new System.Drawing.Point(6, 11);
             this.SelectTableLabel.Name = "SelectTableLabel";
             this.SelectTableLabel.Size = new System.Drawing.Size(37, 13);
             this.SelectTableLabel.TabIndex = 2;
@@ -84,7 +83,7 @@ namespace futbol_AndresGalvan
             // selectTableComboBox
             // 
             this.selectTableComboBox.FormattingEnabled = true;
-            this.selectTableComboBox.Location = new System.Drawing.Point(49, 6);
+            this.selectTableComboBox.Location = new System.Drawing.Point(49, 8);
             this.selectTableComboBox.Name = "selectTableComboBox";
             this.selectTableComboBox.Size = new System.Drawing.Size(121, 21);
             this.selectTableComboBox.TabIndex = 3;
@@ -118,15 +117,6 @@ namespace futbol_AndresGalvan
             this.insertButton.UseVisualStyleBackColor = true;
             this.insertButton.Click += new System.EventHandler(this.insertButton_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(649, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Andrés Galván García";
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -140,7 +130,6 @@ namespace futbol_AndresGalvan
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.insertButton);
             this.tabPage1.Controls.Add(this.modifyButton);
             this.tabPage1.Controls.Add(this.deleteButton);
@@ -231,7 +220,6 @@ namespace futbol_AndresGalvan
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button modifyButton;
         private System.Windows.Forms.Button insertButton;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage SP_ObtenerContratoFutbolista;
