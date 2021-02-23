@@ -1,7 +1,7 @@
 ﻿
 namespace futbol_AndresGalvan
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -69,7 +69,6 @@ namespace futbol_AndresGalvan
             this.RowCountLabel.TabIndex = 1;
             this.RowCountLabel.Text = "Nº de registros";
             this.RowCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RowCountLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // SelectTableLabel
             // 
@@ -106,6 +105,7 @@ namespace futbol_AndresGalvan
             this.modifyButton.TabIndex = 5;
             this.modifyButton.Text = "Modificar";
             this.modifyButton.UseVisualStyleBackColor = true;
+            this.modifyButton.Click += new System.EventHandler(this.modifyButton_Click);
             // 
             // insertButton
             // 
@@ -192,13 +192,13 @@ namespace futbol_AndresGalvan
             this.codDNIoNIELabel.TabIndex = 0;
             this.codDNIoNIELabel.Text = "DNI o NIE:";
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Acceso a SQL (Andrés Galván García)";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);

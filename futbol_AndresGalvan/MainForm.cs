@@ -12,12 +12,12 @@ using Models;
 
 namespace futbol_AndresGalvan
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
 
         private MainController mainController;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
 
@@ -40,8 +40,12 @@ namespace futbol_AndresGalvan
             // Actualizar la interfaz cuando se selecciona una tabla
             this.selectTableComboBox.SelectedIndexChanged += new System.EventHandler(RefreshDataGridView);
 
-            
-
+        }
+        
+        private string readConnectionString()
+        {
+            // Los detalles de la connectionString se encuentran en el fichero App.config
+            return System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
         }
 
         private void populateTableComboBox()
@@ -60,11 +64,6 @@ namespace futbol_AndresGalvan
 
         private void RefreshDataGridView(object sender, System.EventArgs e)
         {
-            // Recoger el comboBox
-            //ComboBox comboBox = (ComboBox) sender;
-
-            // Recoger la opcion seleccionada del comboBox
-            //DataTable selectedTable = (DataTable) comboBox.SelectedItem;
 
             string selectedTable = this.GetSelectedTableName();
 
@@ -88,44 +87,19 @@ namespace futbol_AndresGalvan
                     break;
             }
 
-            //dataGridView1.DataSource = selectedTable;
-
             // Actualizar label
             RowCountLabel.Text = "Nº de registros: " + dataGridView1.RowCount;
 
-
-            // SHIT
-
-            //DataGridViewComboBoxColumn cmb = new DataGridViewComboBoxColumn();
-            //cmb.DisplayMember = "Nombre"; 
-
-            //cmb.DataPropertyName = "Nombre"; // Aqui se ponen los datos (hace que el programa explote)
-            //cmb.DataSource = mainController.getTables()["futbolistas"]; 
-            //dataGridView1.Columns.Add(cmb);
-
-
-
-
         }
 
-        private void RefreshDataGridView()
+        public void RefreshDataGridView()
         {
             RefreshDataGridView(null, null);
-        }
-
-        private string readConnectionString()
-        {
-            return System.Configuration.ConfigurationManager.ConnectionStrings["Test"].ConnectionString;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -206,18 +180,12 @@ namespace futbol_AndresGalvan
                         this.mainController.UpsertContrato(newContrato);
                         break;
                     case "Ligas":
-
-                        Liga newLiga = new Liga()
-                        {
-                            CodLiga = "LFP07",
-                            NomLiga = "Liga Intergaláctica"
-                        };
-
-                        this.mainController.UpsertLiga(newLiga);
+                        UpsertLigaForm upsertLigaForm = new UpsertLigaForm(mainController, this);
+                        upsertLigaForm.Show();
                         break;
                 }
 
-                RefreshDataGridView();
+                //RefreshDataGridView();
             }
             catch (Exception ex)
             {
@@ -241,5 +209,66 @@ namespace futbol_AndresGalvan
             sPdataGridView.DataSource = result;
         }
 
+        private void modifyButton_Click(object sender, EventArgs e)
+        {
+            Object objectToModify = dataGridView1.CurrentRow.DataBoundItem;
+
+            try
+            {
+
+                switch (this.GetSelectedTableName())
+                {
+                    case "Futbolistas":
+
+                        Futbolista newFutbolista = new Futbolista()
+                        {
+                            CodDNIoNIE = "12345678A",
+                            Nombre = "Futbolista de ejemplo",
+                            Nacionalidad = "Alienígena"
+                        };
+
+                        this.mainController.UpsertFutbolista(newFutbolista);
+                        break;
+                    case "Equipos":
+
+                        Equipo newEquipo = new Equipo()
+                        {
+                            // CodEquipo AUTONUMÉRICO
+                            NomEquipo = "Equipo Intergaláctico Alienígena",
+                            CodLiga = "LFP01",
+                            Localidad = "Una Galaxia Muy Lejana",
+                            Internacional = true
+                        };
+
+                        this.mainController.UpsertEquipo(newEquipo);
+                        break;
+                    case "Contratos":
+
+                        Contrato newContrato = new Contrato()
+                        {
+                            // CodContrato AUTONUMÉRICO
+                            CodDNIoNIE = "11111111M",
+                            CodEquipo = 5,
+                            FechaInicio = new DateTime(2008, 01, 01),
+                            FechaFin = new DateTime(2009, 06, 06),
+                            PrecioRecision = 999
+                        };
+
+                        this.mainController.UpsertContrato(newContrato);
+                        break;
+                    case "Ligas":
+                        UpsertLigaForm upsertLigaForm = new UpsertLigaForm(mainController, this);
+                        upsertLigaForm.LoadData((Liga)objectToModify);
+                        upsertLigaForm.Show();
+                        break;
+                }
+
+                //RefreshDataGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
