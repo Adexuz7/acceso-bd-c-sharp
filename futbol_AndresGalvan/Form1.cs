@@ -137,13 +137,13 @@ namespace futbol_AndresGalvan
                 switch (this.GetSelectedTableName())
                 {
                     case "Futbolistas":
-                        this.mainController.DeleteFutbolista((Futbolista) objectToDelete);
+                        this.mainController.DeleteFutbolista((Futbolista)objectToDelete);
                         break;
                     case "Equipos":
-                        
+                        this.mainController.DeleteEquipo((Equipo)objectToDelete);
                         break;
                     case "Contratos":
-
+                        this.mainController.DeleteContrato((Contrato)objectToDelete);
                         break;
                     case "Ligas":
                         this.mainController.DeleteLiga((Liga)objectToDelete);
@@ -180,9 +180,30 @@ namespace futbol_AndresGalvan
                         break;
                     case "Equipos":
 
+                        Equipo newEquipo = new Equipo()
+                        {
+                            // CodEquipo AUTONUMÉRICO
+                            NomEquipo = "Equipo Intergaláctico Alienígena",
+                            CodLiga = "LFP01",
+                            Localidad = "Una Galaxia Muy Lejana",
+                            Internacional = true
+                        };
+
+                        this.mainController.UpsertEquipo(newEquipo);
                         break;
                     case "Contratos":
 
+                        Contrato newContrato = new Contrato()
+                        {
+                            // CodContrato AUTONUMÉRICO
+                            CodDNIoNIE = "11111111M",
+                            CodEquipo = 5,
+                            FechaInicio = new DateTime(2008, 01, 01),
+                            FechaFin = new DateTime(2009, 06, 06),
+                            PrecioRecision = 999
+                        };
+
+                        this.mainController.UpsertContrato(newContrato);
                         break;
                     case "Ligas":
 

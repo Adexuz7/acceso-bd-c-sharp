@@ -193,6 +193,81 @@ namespace Controllers
             }
         }
 
+        public void UpsertEquipo(Equipo equipo)
+        {
+            int CodEquipo = equipo.CodEquipo;
+
+            DataRow equipoToUpsert = null;
+
+            try
+            {
+                // SingleOrDefault devuelve el registro o nada si no existe
+                equipoToUpsert = this.dataSet.Tables["Equipos"]
+                                        .AsEnumerable()
+                                        .SingleOrDefault(row => row.Field<int>("codEquipo") == CodEquipo);
+
+                // Crear una nueva fila para insertar y Si no existe lo inserta
+                if (equipoToUpsert == null)
+                {
+                    equipoToUpsert = this.dataSet.Tables["Equipos"].NewRow();
+                    equipoToUpsert["codEquipo"] = equipo.CodEquipo;
+                    this.dataSet.Tables["Futbolistas"].Rows.Add(equipoToUpsert);
+                }
+
+                // Actualizar campos restantes
+                equipoToUpsert["nomEquipo"] = equipo.NomEquipo;
+                equipoToUpsert["codLiga"] = equipo.CodLiga;
+                equipoToUpsert["localidad"] = equipo.Localidad;
+                equipoToUpsert["internacional"] = equipo.Internacional;
+
+                // Persistir cambios en la base de datos
+                PersistChangesOnDatabaseTable("Equipos");
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void UpsertContrato(Contrato contrato)
+        {
+            int CodContrato = contrato.CodContrato;
+
+            DataRow contratoToUpsert = null;
+
+            try
+            {
+                // SingleOrDefault devuelve el registro o nada si no existe
+                contratoToUpsert = this.dataSet.Tables["Contratos"]
+                                        .AsEnumerable()
+                                        .SingleOrDefault(row => row.Field<int>("codContrato") == CodContrato);
+
+                // Crear una nueva fila para insertar y Si no existe lo inserta
+                if (contratoToUpsert == null)
+                {
+                    contratoToUpsert = this.dataSet.Tables["Contratos"].NewRow();
+                    contratoToUpsert["codContrato"] = contrato.CodContrato;
+                    this.dataSet.Tables["Contratos"].Rows.Add(contratoToUpsert);
+                }
+
+                // Actualizar campos restantes
+                contratoToUpsert["codDNIoNIE"] = contrato.CodDNIoNIE;
+                contratoToUpsert["codEquipo"] = contrato.CodEquipo;
+                contratoToUpsert["fechaInicio"] = contrato.FechaInicio;
+                contratoToUpsert["fechaFin"] = contrato.FechaFin;
+                contratoToUpsert["precioRecision"] = contrato.PrecioRecision;
+
+                // Persistir cambios en la base de datos
+                PersistChangesOnDatabaseTable("Contratos");
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public void UpsertLiga(Liga liga)
         {
             string codLiga = liga.CodLiga;
@@ -268,6 +343,79 @@ namespace Controllers
                 if (futbolistaToDelete != null)
                 {
                     futbolistaToDelete.RejectChanges();
+                }
+
+                throw;
+            }
+        }
+
+        public void DeleteEquipo(Equipo equipo)
+        {
+            int CodEquipo = equipo.CodEquipo;
+
+            DataRow equipoToDelete = null;
+
+            try
+            {
+                // SingleOrDefault devuelve el registro o nada si no existe
+                equipoToDelete = this.dataSet.Tables["Equipos"]
+                                        .AsEnumerable()
+                                        .SingleOrDefault(row => row.Field<int>("codEquipo") == CodEquipo);
+
+
+                if (equipoToDelete == null)
+                {
+                    return;
+                }
+
+                // Marcar fila para eliminar
+                equipoToDelete.Delete();
+
+                // Persistir cambios en la base de datos
+                PersistChangesOnDatabaseTable("Equipos");
+
+            }
+            catch (Exception)
+            {
+                if (equipoToDelete != null)
+                {
+                    equipoToDelete.RejectChanges();
+                }
+
+                throw;
+            }
+        }
+
+        public void DeleteContrato(Contrato contrato)
+        {
+            int CodContrato = contrato.CodContrato;
+
+            DataRow contratoToDelete = null;
+
+            try
+            {
+                // SingleOrDefault devuelve el registro o nada si no existe
+                contratoToDelete = this.dataSet.Tables["Contratos"]
+                                        .AsEnumerable()
+                                        .SingleOrDefault(row => row.Field<int>("codContrato") == CodContrato);
+
+                if (contratoToDelete == null)
+                {
+                    return;
+                }
+
+                // Marcar fila para eliminar
+                contratoToDelete.Delete();
+
+                // Persistir cambios en la base de datos
+                PersistChangesOnDatabaseTable("Contratos");
+
+            }
+            catch (Exception)
+            {
+                if (contratoToDelete != null)
+                {
+                    contratoToDelete.RejectChanges();
                 }
 
                 throw;
