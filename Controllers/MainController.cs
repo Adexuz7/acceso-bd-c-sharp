@@ -160,6 +160,43 @@ namespace Controllers
             }
         }
 
+        public List<Equipo> GetEquiposLiga(string codLiga)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter();
+
+                adapter.TableMappings.Add("Table", "EquiposLiga");
+
+                connection.Open();
+
+                DataSet equiposLigaDataSet = new DataSet("EquiposLiga");
+
+                SqlCommand command = new SqlCommand(
+                    @"SELECT codEquipo, nomEquipo, codLiga, localidad, internacional 
+                      FROM dbo.Equipos
+                      WHERE codLiga LIKE '" + codLiga + "';",
+                    connection);
+                command.CommandType = CommandType.Text;
+
+                adapter.SelectCommand = command;
+
+                adapter.Fill(equiposLigaDataSet);
+
+                connection.Close();
+
+                return equiposLigaDataSet.Tables["EquiposLiga"].AsEnumerable().Select(equipo =>
+                new Equipo
+                {
+                    CodEquipo = equipo.Field<int>("codEquipo"),
+                    NomEquipo = equipo.Field<string>("nomEquipo"),
+                    CodLiga = equipo.Field<string>("codLiga"),
+                    Localidad = equipo.Field<string>("localidad"),
+                    Internacional = equipo.Field<bool>("internacional")
+                }).ToList();
+            }
+        }
+
         // Funciones para insertar o actualizar
         public void UpsertFutbolista(Futbolista futbolista)
         {

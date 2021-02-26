@@ -99,6 +99,27 @@ namespace futbol_AndresGalvan
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // invocar nueva ventana con los datos de la liga y sus equipos
+            Object objectToLoad = dataGridView1.CurrentRow.DataBoundItem;
+
+            switch (this.GetSelectedTableName())
+            {
+                case "Futbolistas":
+                    
+                    break;
+                case "Equipos":
+                    
+                    break;
+                case "Contratos":
+                    
+                    break;
+                case "Ligas":
+                    EquiposLigaForm equiposLigaForm = new EquiposLigaForm(mainController, this);
+                    equiposLigaForm.LoadData((Liga)objectToLoad);
+                    equiposLigaForm.Show();
+                    break;
+            }
+
 
         }
 
